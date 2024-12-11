@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Juros Compostos</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" href="log2o.png" type="image/x-icon">
+    <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+</head>
+<body class="dark-theme">
+    <header>
+        <nav class="navbar">
+            <a href="">
+                <div class="logo">
+                    <img src="logowhite.png" style="width: 180px;" alt="">
+                </div>
+            </a>
+            <div class="nav-links">
+                <a href="https://adhamc4bral.github.io/eu/" target="_blank">Portfólio</a>
+                <a href="https://adhamc4bral.github.io/agentesdigitais/" target="_blank">Agentes Digitais</a>
+                <a href="https://wa.me/5511930304885?text=Olá,%20tudo%20bem?%20Vim%20te%20chamar%20após%20ver%20a%20calculadora%20de%20juros%20compostos" target="_blank" rel="noopener noreferrer">
+                    <button class="contact-btn">Fale Comigo</button>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="content-wrapper">
+        <div class="calculator-container">
+            <h1 style="text-align: left; padding-bottom: 20px; color: #069b33;">Calculadora de Juros Compostos</h1>
+            <form id="calculator-form">
+                <div class="form-group">
+                    <label for="initialValue">Valor Inicial:</label>
+                    <input type="text" id="initialValue" oninput="formatCurrency(this)" required>
+                </div>
+                <div class="form-group">
+                    <label for="monthlyValue">Valor Mensal:</label>
+                    <input type="text" id="monthlyValue" oninput="formatCurrency(this)" required>
+                </div>
+                <div class="form-group">
+                    <label for="interestRate">Taxa de Juros:</label>
+                    <input type="number" id="interestRate" step="0.01" required>
+                    <select id="interestType">
+                        <option value="annual">Anual</option>
+                        <option value="monthly">Mensal</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="period">Período:</label>
+                    <input type="number" id="period" required>
+                    <select id="periodType">
+                        <option value="years">Ano(s)</option>
+                        <option value="months">Mes(es)</option>
+                    </select>
+                </div>
+                <div class="button-group">
+                    <button type="button" class="btn calculate-btn" onclick="calculate()">Calcular</button>
+                    <button type="button" class="btn clear-btn" onclick="clearFields()" style="background-color: brown;">Limpar</button>
+                </div>
+            </form>
+        </div>
+
+        <div id="result-container" class="result-container" style="display: none;">
+            <h1 style="text-align: left; padding-bottom: 20px;">Resultado</h1>
+            <div id="result" class="result-blocks"></div>
+            <canvas id="growthChart"></canvas>
+            <div id="table-container" class="table-container"></div>
+            <button class="export-excel-btn" onclick="exportToExcel()">Exportar para Excel</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>Adham Cabral - 2024</p>
+        <div class="social-icons">
+            <a href="https://github.com/AdhamC4bral" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://discord.gg/QGqZnn37Y8" target="_blank"><i class="fab fa-discord"></i></a>
+            <a href="https://wa.me/5511930304885?text=Olá,%20tudo%20bem?%20Vim%20te%20chamar%20após%20ver%20a%20calculadora%20de%20juros%20compostos" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://www.instagram.com/o_adhamcabral/" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/in/adhamcabral-dev/" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://adhamc4bral.github.io/eu/" target="_blank"><i class="fas fa-globe"></i></a>
+        </div>
+    </footer>
+
+    <button id="theme-toggle" onclick="toggleTheme()"></button>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+        function exportToExcel() {
+            // Função para exportar os dados da tabela para um arquivo Excel
+            let table = document.querySelector('.styled-table');
+            if (!table) {
+                alert('Nenhuma tabela disponível para exportar.');
+                return;
+            }
+            let workbook = XLSX.utils.table_to_book(table);
+            XLSX.utils.book_append_sheet(workbook, XLSX.utils.aoa_to_sheet([['Criado por Adham Cabral']]), 'Créditos');
+            XLSX.writeFile(workbook, 'resultado.xlsx');
+        }
+    </script>
+</body>
+</html>
