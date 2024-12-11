@@ -12,11 +12,12 @@
 <body class="dark-theme">
     <header>
         <nav class="navbar">
-            <a href="">
-                <div class="logo">
-                    <img src="logowhite.png" style="width: 180px;" alt="">
-                </div>
+            <a href="" class="logo">
+                <img src="logowhite.png" style="width: 180px;" alt="">
             </a>
+            <button class="menu-toggle" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
             <div class="nav-links">
                 <a href="https://adhamc4bral.github.io/eu/" target="_blank">Portfólio</a>
                 <a href="https://adhamc4bral.github.io/agentesdigitais/" target="_blank">Agentes Digitais</a>
@@ -86,20 +87,7 @@
     <button id="theme-toggle" onclick="toggleTheme()"></button>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
     <script src="script.js"></script>
-    <script>
-        function exportToExcel() {
-            // Função para exportar os dados da tabela para um arquivo Excel
-            let table = document.querySelector('.styled-table');
-            if (!table) {
-                alert('Nenhuma tabela disponível para exportar.');
-                return;
-            }
-            let workbook = XLSX.utils.table_to_book(table);
-            XLSX.utils.book_append_sheet(workbook, XLSX.utils.aoa_to_sheet([['Criado por Adham Cabral']]), 'Créditos');
-            XLSX.writeFile(workbook, 'resultado.xlsx');
-        }
     </script>
 </body>
 </html>
