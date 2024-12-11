@@ -1,13 +1,13 @@
 /* Estilo base para o corpo do documento */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fonte padrão */
-    background-color: var(--bg-color); /* Cor de fundo variável */
-    color: var(--text-color); /* Cor do texto variável */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
     display: flex;
     flex-direction: column;
-    min-height: 100vh; /* Garante que o conteúdo ocupe pelo menos a altura total da janela */
+    min-height: 100vh;
     margin: 0;
-    transition: background-color 0.3s, color 0.3s; /* Transição suave para mudança de tema */
+    transition: background-color 0.3s, color 0.3s;
 }
 
 /* Variáveis de cor usadas no tema claro */
@@ -23,9 +23,9 @@ body {
 
 /* Variáveis de cor usadas no tema escuro */
 .dark-theme {
-    --bg-color: #1c1c1c; /* Cinza escuro */
+    --bg-color: #1c1c1c;
     --text-color: #e0e0e0;
-    --primary-color: #370c6e; /* Roxo quase preto */
+    --primary-color: #370c6e;
     --secondary-color: #069b33;
     --danger-color: #077728;
     --table-bg: #2a2a2a;
@@ -62,7 +62,8 @@ header {
 .nav-links {
     display: flex;
     align-items: center;
-    margin-left: auto; /* Empurra os itens para a direita */
+    margin-left: auto;
+    transition: max-height 0.3s ease-in-out;
 }
 
 .nav-links a, .contact-btn {
@@ -80,6 +81,7 @@ header {
     border-radius: 5px;
     cursor: pointer;
 }
+
 .logo:hover {
     transform: scale(1.05);
 }
@@ -88,13 +90,22 @@ header {
     transform: scale(1.05);
 }
 
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 1.5em;
+    cursor: pointer;
+}
+
 .content-wrapper {
-    flex-grow: 1; /* Permite que este elemento cresça para preencher o espaço disponível */
+    flex-grow: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
-    max-width: 1200px; /* Aumentado para maior largura */
+    max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
     box-sizing: border-box;
@@ -105,17 +116,16 @@ header {
     margin-top: 35px;
     margin-bottom: 35px;
     background-color: var(--table-bg);
-    padding: 30px; /* Ajustado para melhor espaçamento */
+    padding: 30px;
     border-radius: 15px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
     width: 100%;
     text-align: center;
     transition: background-color 0.3s;
-    margin-bottom: 30px;
 }
 
 h1, h2 {
-    font-size: 2em; /* Ajustado para melhor impacto */
+    font-size: 2em;
     margin-bottom: 20px;
 }
 
@@ -124,8 +134,8 @@ h1, h2 {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 1.2em; /* Ajustado para melhor legibilidade */
-    flex-wrap: wrap; /* Permite que os elementos se ajustem melhor */
+    font-size: 1.2em;
+    flex-wrap: wrap;
     gap: 10px;
 }
 
@@ -144,7 +154,7 @@ input[type="text"], input[type="number"], select {
     transition: border-color 0.3s, box-shadow 0.3s;
     background-color: var(--table-bg);
     color: var(--text-color);
-    font-size: 1em; /* Ajustado para melhor legibilidade */
+    font-size: 1em;
     margin-bottom: 10px;
 }
 
@@ -182,7 +192,7 @@ button.btn {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s, transform 0.2s;
-    font-size: 1.2em; /* Ajustado para destaque */
+    font-size: 1.2em;
 }
 
 button.calculate-btn {
@@ -242,10 +252,10 @@ body.dark-theme #theme-toggle::before {
 .result-block {
     background-color: var(--table-bg);
     color: var(--text-color);
-    padding: 20px; /* Aumentado para mais destaque */
+    padding: 20px;
     border-radius: 10px;
     width: calc(30% - 15px);
-    min-width: 150px; /* Aumentado para garantir legibilidade */
+    min-width: 150px;
     border: 2px solid var(--danger-color);
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
     text-align: center;
@@ -258,12 +268,12 @@ body.dark-theme #theme-toggle::before {
 
 .result-block strong {
     display: block;
-    font-size: 1.5em; /* Aumentado para destaque */
+    font-size: 1.5em;
     margin-bottom: 10px;
 }
 
 .result-block p {
-    font-size: 1.5em; /* Aumentado para destaque */
+    font-size: 1.5em;
     font-weight: bold;
 }
 
@@ -275,7 +285,7 @@ canvas {
 .table-container {
     margin-top: 25px;
     overflow-x: auto;
-    max-height: 350px; /* Aumentado para permitir mais conteúdo */
+    max-height: 350px;
     overflow-y: auto;
     width: 100%;
     position: relative;
@@ -292,7 +302,7 @@ canvas {
     padding: 15px 20px;
     border: 1px solid var(--table-border);
     text-align: center;
-    font-size: 1.2em; /* Aumentado para melhor legibilidade */
+    font-size: 1.2em;
 }
 
 .styled-table th {
@@ -359,16 +369,36 @@ footer {
     color: var(--secondary-color);
 }
 
-@media (max-width: 600px) {
-    .navbar {
-        flex-direction: column;
-        align-items: flex-start;
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
     }
 
     .nav-links {
-        margin-top: 10px;
+        flex-direction: column;
+        align-items: flex-start;
+        position: absolute;
+        top: 65px;
+        left: 0;
+        right: 0;
+        background-color: var(--primary-color);
+        max-height: 0;
+        overflow: hidden;
     }
 
+    .nav-links.active {
+        max-height: 300px;
+    }
+
+    .nav-links a, .contact-btn {
+        margin: 10px 0;
+        margin-right: 0;
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media (max-width: 600px) {
     .calculator-container, .result-container {
         padding: 20px;
     }
